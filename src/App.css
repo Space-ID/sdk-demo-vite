@@ -37,8 +37,8 @@ body {
   margin: 0 auto;
   padding: 1rem;
   text-align: center;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-    "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .header {
@@ -84,7 +84,11 @@ body {
 h1 {
   font-size: 2.5em;
   line-height: 1.1;
-  background: linear-gradient(to right, var(--primary-color), var(--primary-color-hover));
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--primary-color-hover)
+  );
   background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0 0 0.5rem;
@@ -150,7 +154,11 @@ h1 {
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(to right, var(--primary-color), var(--primary-color-hover));
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--primary-color-hover)
+  );
 }
 
 .card h3 {
@@ -610,4 +618,207 @@ button.primary:hover {
   color: #888;
   font-size: 0.9rem;
   font-style: italic;
+}
+
+/* PaymentID styling */
+.payment-id-selector {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #2a2a2a;
+  border-radius: 4px;
+}
+
+.chain-select {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.chain-select button {
+  background-color: var(--dark-surface);
+  color: var(--dark-text-primary);
+  border: 1px solid var(--primary-color);
+  flex: 1 1 calc(33% - 0.5rem);
+  min-width: 100px;
+}
+
+.chain-select button:hover {
+  background-color: var(--dark-surface-hover);
+}
+
+.chain-select button.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Make the disabled card styles more obvious */
+.disabled-card {
+  opacity: 0.8;
+  position: relative;
+}
+
+.disabled-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+/* Add responsive design for PaymentID elements */
+@media (max-width: 768px) {
+  .chain-select button {
+    flex: 1 1 calc(50% - 0.5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .chain-select button {
+    flex: 1 1 100%;
+  }
+}
+
+/* 添加调试卡片样式 */
+.debug-card {
+  margin-top: 20px;
+  background-color: #2a2a2a;
+  border-left: 4px solid #ff9800;
+}
+
+.debug-content {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+button.small {
+  font-size: 0.9em;
+  padding: 0.4em 0.8em;
+  margin-top: 10px;
+}
+
+/* 当前协议指示器 */
+.current-protocol-indicator {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 1.2rem;
+  color: #f0f0f0;
+}
+
+.protocol-tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.protocol-tag.evm {
+  background-color: #3498db;
+}
+
+.protocol-tag.solana {
+  background-color: #9b59b6;
+}
+
+.protocol-tag.sei {
+  background-color: #2ecc71;
+}
+
+.protocol-tag.injective {
+  background-color: #f1c40f;
+}
+
+.protocol-tag.paymentid {
+  background-color: #e74c3c;
+  animation: pulse 2s infinite;
+}
+
+/* PaymentID 独立区域样式 */
+.payment-id-card {
+  border-left: 3px solid #f0a800;
+  background-color: rgba(32, 33, 36, 0.9);
+  margin-top: 20px;
+}
+
+.payment-id-content {
+  padding: 10px 0;
+}
+
+.payment-actions {
+  margin: 20px 0;
+}
+
+.payment-loading,
+.payment-error,
+.payment-success {
+  margin: 15px 0;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.payment-error {
+  background-color: rgba(255, 59, 48, 0.2);
+  border-left: 3px solid #ff3b30;
+}
+
+.payment-success {
+  background-color: rgba(52, 199, 89, 0.2);
+  border-left: 3px solid #34c759;
+}
+
+.payment-result {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 10px;
+  overflow-x: auto;
+}
+
+.payment-info {
+  background-color: rgba(0, 122, 255, 0.1);
+  border-left: 3px solid #007aff;
+  padding: 10px 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+/* 为按钮添加一些呼吸效果 */
+.payment-id-card .primary {
+  transition: all 0.3s ease;
+}
+
+.payment-id-card .primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 让链选择按钮更美观 */
+.payment-id-card .chain-select button {
+  margin: 5px;
+  padding: 8px 12px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.payment-id-card .chain-select button:hover {
+  background-color: #444;
+}
+
+.payment-id-card .chain-select button.active {
+  background-color: #f0a800;
+  color: #000;
+  font-weight: bold;
 }
